@@ -22,8 +22,9 @@ public class ScheduleService {
 	
 	schedule itemObj = new schedule();
 	
+	// Start GET method ------------------------------------------------
 	
-	
+	// read schedule table details
 	
 	@GET
 	@Path("/readItems")
@@ -33,6 +34,8 @@ public class ScheduleService {
 	return itemObj.readItems();
 	}
 	
+	
+	// display to doctors
 	
 	@GET
 	@Path("/DisplayDoctor")
@@ -44,7 +47,7 @@ public class ScheduleService {
 	
 	
 	
-	
+	// view confirmed schedule table details 
 	
 	@GET
 	@Path("/ViewTable")
@@ -56,6 +59,21 @@ public class ScheduleService {
 	
 	
 	
+	// display to the patients if only accepted schedules
+	
+	@GET
+	@Path("/DisplayPatients")
+	@Produces(MediaType.TEXT_HTML)
+	public String DisplayPatients()
+	{
+	return itemObj.DisplayPatients();
+	}
+	
+	
+	
+// Start POST methods ------------------------------
+	
+	// Insert to schedule table according to doctors requests
 	
 	@POST
 	@Path("/insertItem")
@@ -80,6 +98,8 @@ public class ScheduleService {
 	
 	
 	
+	// insert only doctors confirmed schedule data to (docschedule table)
+	
 	@POST
 	@Path("/insertConfirmSchedule")
 	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
@@ -102,8 +122,9 @@ public class ScheduleService {
 	}
 	
 	
+	// beginning of the PUT method
 	
-	
+	// update schedule table
 	
 	@PUT
 	@Path("/updateItem")
@@ -136,43 +157,11 @@ public class ScheduleService {
 	
 	
 	
-	
-	/*
-	 * @PUT
-	 * 
-	 * @Path("/updateStatus")
-	 * 
-	 * @Consumes(MediaType.APPLICATION_JSON)
-	 * 
-	 * @Produces(MediaType.TEXT_PLAIN) public String updateStatus(String itemData) {
-	 * //Convert the input string to a JSON object JsonObject itemObject = new
-	 * JsonParser().parse(itemData).getAsJsonObject(); //Read the values from the
-	 * JSON object
-	 * 
-	 * int d = itemObject.get("id").getAsInt(); String sii =
-	 * itemObject.get("s").getAsString(); String hnn
-	 * =itemObject.get("hnnn").getAsString(); String dnn
-	 * =itemObject.get("dnnn").getAsString(); String spp
-	 * =itemObject.get("spl").getAsString(); String dated
-	 * =itemObject.get("da").getAsString(); String startd
-	 * =itemObject.get("st").getAsString(); String endd
-	 * =itemObject.get("en").getAsString(); String rm
-	 * =itemObject.get("rm").getAsString(); String std =
-	 * itemObject.get("stat").getAsString();
-	 * 
-	 * String output =
-	 * itemObj.updateStatus(d,sii,hnn,dnn,spp,dated,startd,endd,rm,std);
-	 * 
-	 * return output;
-	 * 
-	 * }
-	 */
-	
-	
+	// Update only status for the given schedule id 
 	
 	
 	@PUT
-	@Path("/updateTest")
+	@Path("/updateTes")
 	@Consumes(MediaType.APPLICATION_JSON)
 	@Produces(MediaType.TEXT_PLAIN)
 	public String updateTe(String itemData)
@@ -181,24 +170,21 @@ public class ScheduleService {
 	JsonObject itemObject = new JsonParser().parse(itemData).getAsJsonObject();
 	//Read the values from the JSON object
 	
-	int di = itemObject.get("id").getAsInt();
+	String di = itemObject.get("id").getAsString();
 	String s = itemObject.get("st").getAsString();
 	
-	String output = itemObj.updateTest(di,s);
+	String output = itemObj.updateTes(di,s);
 	
 	return output;
 	
 	}
 	
 	
+   // beginning of the DELETE method	
 	
+	// Remove incorrect schedules from the schedule table
 	
-	
-	
-	
-	
-	
-	@DELETE
+    @DELETE
 	@Path("/deleteItem")
 	@Consumes(MediaType.APPLICATION_XML)
 	@Produces(MediaType.TEXT_PLAIN)
@@ -213,6 +199,8 @@ public class ScheduleService {
 	}
 	
 	
+  // Remove confirmed schedule details from docschedule table
+    
 	
 	@DELETE
 	@Path("/RemoveRecord")

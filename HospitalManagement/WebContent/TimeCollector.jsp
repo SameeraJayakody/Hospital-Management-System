@@ -41,16 +41,16 @@ session.setAttribute("stat", request.getParameter("stat"));
 
 <h1>Schedule Management</h1>
 <form method="post" action="TimeCollector.jsp" align="center">
-SID: <input name="si" type="text" ><br>
-HOS_ID: <input name="hi" type="text" ><br>
-HOS_NAME: <input name="hn" type="text" ><br>
-DOC_ID: <input name="di" type="text" ><br>
-DOC_NAME: <input name="dn" type="text" ><br>
+SID:        <input name="si" type="text" ><br>
+HOS_ID:     <input name="hi" type="text" ><br>
+HOS_NAME:   <input name="hn" type="text" ><br>
+DOC_ID:     <input name="di" type="text" ><br>
+DOC_NAME:   <input name="dn" type="text" ><br>
 SPECIALITY: <input name="sp" type="text" ><br>
-DATE: <input name="d" type="date" ><br>
-START: <input name="s" type="time" ><br>
-END: <input name="e" type=time ><br>
-ROOM: <input name="r" type="text" ><br>
+DATE:       <input name="d" type="date" ><br>
+START:      <input name="s" type="time" ><br>
+END:        <input name="e" type=time ><br>
+ROOM:       <input name="r" type="text" ><br>
 <label for="cars">Status:</label>
   <select id="stat" name="stat">
     <option value="YES">YES</option>
@@ -64,6 +64,9 @@ ROOM: <input name="r" type="text" ><br>
 
 
 
+<br>
+<br>
+<br>
 <br>
 
  
@@ -98,7 +101,13 @@ ROOM: <input name="r" type="text" ><br>
 <td><input name="btnUpdate" type="button" value="Update"></td>
 <td><input name="btnRemove" type="button" value="Remove"></td>
 </tr>
-</table>   
+</table>  
+<br>
+<br>
+<br>
+<br>
+<br>
+ 
 
 
 
@@ -137,7 +146,7 @@ request.getParameter("stat"));
 session.setAttribute("statusMsg", stsMsg);
 }
 
-
+ // response.sendRedirect("Doctor.jsp");
 %> 
  
 
