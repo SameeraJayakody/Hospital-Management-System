@@ -11,9 +11,9 @@ public class schedule {
 
 	dbconnect obj = new dbconnect();
 
-	
-	// Insert to schedule table according to doctors requests    (Service method) -------------------------------
-	
+	// Insert to schedule table according to doctors requests (Service method)
+	// -------------------------------
+
 	public String insertItem(String sid, String hid, String hname, String did, String dname, String special,
 			String date, String start, String end, String room, String sts) {
 		String output = "";
@@ -55,7 +55,8 @@ public class schedule {
 		return output;
 	}
 
-	// read the schedule table  (Service method) ----------------------------------------------- 
+	// read the schedule table (Service method)
+	// -----------------------------------------------
 
 	public String readItems() {
 		String output = "";
@@ -69,7 +70,7 @@ public class schedule {
 					+ "<th>HospitalID</th><th>HospitalName</th>" + "<th>DoctorID</th>" + "<th>DoctorName</th>"
 					+ "<th>Speciality</th>" + "<th>Date</th>" + "<th>StartTime</th>" + "<th>EndTime</th>"
 					+ "<th>RoomNumber</th>" + "<th>Status</th>" + "<th>Remove</th></tr>";
-			
+
 			String query = "select * from schedule";
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
@@ -100,7 +101,7 @@ public class schedule {
 				output += "<td>" + rm + "</td>";
 				output += "<td>" + sts + "</td>";
 				// buttons
-				output +=  "<td><form method=\"post\" action=\"TimeCollector.jsp\">" + "<input name=\"btnRemove\" "
+				output += "<td><form method=\"post\" action=\"TimeCollector.jsp\">" + "<input name=\"btnRemove\" "
 						+ " type=\"submit\" value=\"Remove\" action=\"TimeCollector.jsp\">"
 						+ "<input name=\"id\" type=\"hidden\" " + " value=\"" + id + "\">" + "</form></td></tr>";
 			}
@@ -113,11 +114,9 @@ public class schedule {
 		}
 		return output;
 	}
-	
-	
-	
 
-	// Remove incorrect schedules from the schedule table   (Service method) -------------------------------
+	// Remove incorrect schedules from the schedule table (Service method)
+	// -------------------------------
 
 	public String deleteItem(String ID) {
 		String output = "";
@@ -147,13 +146,8 @@ public class schedule {
 		return output;
 	}
 
-	
-	
-	
-	// update schedule table   (Service method)------------------------------------------------------
-	
-	
-	
+	// update schedule table (Service
+	// method)------------------------------------------------------
 
 	public String updateItem(int id, String sid, String hid, String hname, String did, String dname, String special,
 			String date, String start, String end, String room) {
@@ -195,11 +189,9 @@ public class schedule {
 		return output;
 	}
 
-	
-	
-	// view admin scheduled time by doctors to confirmations (Extract from schedule table)  (service method) --------------------------------
-	
-	
+	// view admin scheduled time by doctors to confirmations (Extract from schedule
+	// table) (service method) --------------------------------
+
 	public String DisplayDoctor() {
 		String output = "";
 		try {
@@ -211,7 +203,7 @@ public class schedule {
 			output = "<table border=\"1\" align=\"center\"><tr><th>scheduleID</th>"
 					+ "<th>HospitalName</th><th>DoctorName</th>" + "<th>Speciality</th>" + "<th>Date</th>"
 					+ "<th>StartTime</th>" + "<th>EndTime</th>" + "<th>RoomNumber</th>" + "<th>Status</th>";
-					
+
 			String query = "select * from schedule";
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
@@ -262,11 +254,9 @@ public class schedule {
 		}
 		return output;
 	}
-	
-	
-	
 
-	// insert only doctors confirmed schedule data to (docschedule table) ------------------------------------- 
+	// insert only doctors confirmed schedule data to (docschedule table)
+	// -------------------------------------
 
 	public String insertSchedule(String sid, String hname, String dname, String special, String date, String start,
 			String end, String room, String sts) {
@@ -360,12 +350,9 @@ public class schedule {
 	 * "Error while inserting the items."; System.err.println(e.getMessage()); }
 	 * return output; }
 	 */
-	
-	
-	
-	// insert only doctors confirmed schedule data to (docschedule table)  (Service method) ------------------------------------- 
-	
-	
+
+	// insert only doctors confirmed schedule data to (docschedule table) (Service
+	// method) -------------------------------------
 
 	public String insertConfirmSchedule(String sid, String hname, String dname, String special, String date,
 			String start, String end, String room, String sts) {
@@ -434,11 +421,8 @@ public class schedule {
 	 * System.err.println(e.getMessage()); } return output; }
 	 */
 
-	
-	
-	
-	
-	// Remove confirmed schedule details from docschedule table  (Service method) ------------------------ 
+	// Remove confirmed schedule details from docschedule table (Service method)
+	// ------------------------
 
 	public String RemoveRecord(String ID) {
 		String output = "";
@@ -468,10 +452,8 @@ public class schedule {
 		return output;
 	}
 
-	
-	
-	
-	// view confirmed schedule table details (Service method) -----------------------------------
+	// view confirmed schedule table details (Service method)
+	// -----------------------------------
 
 	public String ViewTable() {
 		String output = "";
@@ -533,14 +515,10 @@ public class schedule {
 		}
 		return output;
 	}
-	
-	
-	
 
-	
-	
-	// display to the patients if only accepted schedules (Service method)---------------------------------- 
-	
+	// display to the patients if only accepted schedules (Service
+	// method)----------------------------------
+
 	public String DisplayPatients() {
 		String output = "";
 		try {
@@ -551,8 +529,8 @@ public class schedule {
 			// Prepare the html table to be displayed
 			output = "<table border=\"1\" align=\"center\"><tr><th>scheduleID</th>"
 					+ "<th>HospitalName</th><th>DoctorName</th>" + "<th>Speciality</th>" + "<th>Date</th>"
-					+ "<th>StartTime</th>" + "<th>EndTime</th>" + "<th>RoomNumber</th>" + "<th>Status</th>"
-					+ "<th>Modifiy</th></tr>";
+					+ "<th>StartTime</th>" + "<th>EndTime</th>" + "<th>RoomNumber</th>" + "<th>Status</th>";
+			/* + "<th>Modifiy</th></tr>"; */
 			String query = "select * from schedule where Status = 'YES'";
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
@@ -571,6 +549,8 @@ public class schedule {
 				String rm = rs.getString("RoomNumber");
 				String sts = rs.getString("Status");
 
+				insertConfirmSchedule(id, hn, dn, sp, da, st, en, rm, sts);
+
 				// Add into the html table
 				output += "<tr><td>" + sid + "</td>";
 				output += "<td>" + hn + "</td>";
@@ -585,12 +565,15 @@ public class schedule {
 				 * output += "<td>" + rm + "</td>"; output += "<td>" + sts + "</td>";
 				 */
 				// buttons
-				output += "<td><input name=\"btnRemove\" "
-						/* + " type=\"button\" value=\"Update\"></td>" */
-						/* + "<td><form method=\"post\" action=\"TimeCollector.jsp\">" */
-						/* + "<input name=\"btnRemove\" " */
-						+ " type=\"submit\" value=\"Update\" action=\"TimeCollector.jsp\">"
-						+ "<input name=\"id\" type=\"hidden\" " + " value=\"" + id + "\">" + "</form></td></tr>";
+				/*
+				 * output += "<td><input name=\"btnRemove\" " +
+				 * " type=\"button\" value=\"Update\"></td>" +
+				 * "<td><form method=\"post\" action=\"TimeCollector.jsp\">" +
+				 * "<input name=\"btnRemove\" " +
+				 * " type=\"submit\" value=\"Update\" action=\"TimeCollector.jsp\">" +
+				 * "<input name=\"id\" type=\"hidden\" " + " value=\"" + id + "\">" +
+				 * "</form></td></tr>";
+				 */
 			}
 			con.close();
 			// Complete the html table
@@ -601,10 +584,9 @@ public class schedule {
 		}
 		return output;
 	}
-	
-	
-	
-	// Update only status for the given schedule id  (Service method) -----------------------------------------	
+
+	// Update only status for the given schedule id (Service method)
+	// -----------------------------------------
 
 	public String updateTes(String id, String status) {
 		String output = "";
@@ -637,4 +619,168 @@ public class schedule {
 		return output;
 	}
 
+	public String Test() {
+		String output = "";
+		try {
+			Connection con = obj.connect();
+			if (con == null) {
+				return "Error while connecting to the database for reading.";
+			}
+			// Prepare the html table to be displayed
+
+			String query = "select * from schedule where Status = 'YES'";
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			// iterate through the rows in the result set
+			while (rs.next()) {
+				String id = rs.getString("ID");
+				String sid = rs.getString("scheduleID");
+				String hn = rs.getString("HospitalName");
+				String dn = rs.getString("DoctorName");
+				String sp = rs.getString("Speciality");
+				String da = rs.getString("Date");
+				String st = rs.getString("StartTime");
+				String en = rs.getString("EndTime");
+				String rm = rs.getString("RoomNumber");
+				String sts = rs.getString("Status");
+
+				insertConfirmSchedule(sid, hn, dn, sp, da, st, en, rm, sts);
+
+				/*
+				 * // Add into the html table output += "<tr><td>" + sid + "</td>"; output +=
+				 * "<td>" + hn + "</td>"; output += "<td>" + dn + "</td>"; output += "<td>" + sp
+				 * + "</td>"; output += "<td>" + da + "</td>"; output += "<td>" + st + "</td>";
+				 * output += "<td>" + en + "</td>"; output += "<td>" + rm + "</td>"; output +=
+				 * "<td>" + sts + "</td>";
+				 * 
+				 * output += "<td>" + rm + "</td>"; output += "<td>" + sts + "</td>";
+				 * 
+				 * // buttons output += "<td><input name=\"btnRemove\" " +
+				 * " type=\"button\" value=\"Update\"></td>" +
+				 * "<td><form method=\"post\" action=\"TimeCollector.jsp\">" +
+				 * "<input name=\"btnRemove\" " +
+				 * " type=\"submit\" value=\"Update\" action=\"TimeCollector.jsp\">" +
+				 * "<input name=\"id\" type=\"hidden\" " + " value=\"" + id + "\">" +
+				 * "</form></td></tr>"; }
+				 */
+			}
+			con.close();
+			// Complete the html table
+			/* output += "</table>"; */
+		} catch (Exception e) {
+			output = "Error while transfering data to docschedule table";
+			System.err.println(e.getMessage());
+		}
+		return output;
+	}
+
+	
+	
+	
+	
+	
+	
+	// request message insert method
+	
+	
+	
+	
+	public String insertMessage(String sid,String did, String dname, String date, String message) {
+		String output = "";
+		try {
+			Connection con = obj.connect();
+			if (con == null) {
+				return "Error while connecting to the database";
+			}
+			// create a prepared statement
+			String query = "insert into request"
+					+ "(`ID`, `scheduleID`, `DoctorID`, `DoctorName`,`Date`,`Message`)"
+					+ " values (?, ?, ?, ?, ?, ?)";
+			PreparedStatement preparedStmt = con.prepareStatement(query);
+			// binding values
+			preparedStmt.setInt(1, 0);
+			preparedStmt.setString(2, sid);
+			preparedStmt.setString(3, did);
+			preparedStmt.setString(4, dname);
+			preparedStmt.setString(5, date);
+			preparedStmt.setString(6, message);
+
+			// execute the statement
+			preparedStmt.execute();
+			// System.out.print("successfuly inserted");
+			con.close();
+			output = "Inserted successfully";
+
+		} catch (Exception e) {
+			output = "Error while inserting items";
+			System.err.println(e.getMessage());
+		}
+
+		return output;
+	}
+
+	
+	
+	// read request message table ------------------------------------
+	
+	
+	public String readRequest() {
+		String output = "";
+		try {
+			Connection con = obj.connect();
+			if (con == null) {
+				return "Error while connecting to the database for reading.";
+			}
+			// Prepare the html table to be displayed
+			output = "<table border=\"1\" align=\"center\"><tr><th>scheduleID</th>"
+					 + "<th>DoctorID</th>" + "<th>DoctorName</th>"
+					 + "<th>Date</th>" 
+					+ "<th>Message</th>";
+
+			String query = "select * from request";
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			// iterate through the rows in the result set
+			while (rs.next()) {
+				String id = rs.getString("ID");
+				String sid = rs.getString("scheduleID");
+				String did = rs.getString("DoctorID");
+				String dn = rs.getString("DoctorName");
+				String da = rs.getString("Date");
+				String sts = rs.getString("Message");
+				// Add into the html table
+				output += "<tr><td>" + sid + "</td>";
+				
+				output += "<td>" + did + "</td>";
+				output += "<td>" + dn + "</td>";
+				
+				output += "<td>" + da + "</td>";
+				
+				
+				output += "<td>" + sts + "</td>";
+				// buttons
+				/*
+				 * output += "<td><form method=\"post\" action=\"TimeCollector.jsp\">" +
+				 * "<input name=\"btnRemove\" " +
+				 * " type=\"submit\" value=\"Remove\" action=\"TimeCollector.jsp\">" +
+				 * "<input name=\"id\" type=\"hidden\" " + " value=\"" + id + "\">" +
+				 * "</form></td></tr>";
+				 */
+			}
+			con.close();
+			// Complete the html table
+			/* output += "</table>"; */
+		} catch (Exception e) {
+			output = "Error while reading the items.";
+			System.err.println(e.getMessage());
+		}
+		return output;
+	}
+	
+	
+	
+	
+	
+	
+	
 }

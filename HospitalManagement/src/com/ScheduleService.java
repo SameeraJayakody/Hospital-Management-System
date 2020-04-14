@@ -70,6 +70,16 @@ public class ScheduleService {
 	}
 	
 	
+	// read request message
+	
+	@GET
+	@Path("/readRequest")
+	@Produces(MediaType.TEXT_HTML)
+	public String readRequest()
+	{
+	return itemObj.readRequest();
+	}
+	
 	
 // Start POST methods ------------------------------
 	
@@ -120,6 +130,29 @@ public class ScheduleService {
 	String output = itemObj.insertConfirmSchedule(sid,hname,dname,special,date,start,end,room,Status);
 	return output;
 	}
+
+	
+	// Doctor request message insert service
+	
+	
+	
+	@POST
+	@Path("/insertMessage")
+	@Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+	@Produces(MediaType.TEXT_PLAIN)
+	public String insertMessage(
+	@FormParam("s") String sid,
+    @FormParam("dii") String did,
+	@FormParam("dnn") String dname,
+	@FormParam("da") String date,
+    @FormParam("stats") String Status)
+	{
+	String output = itemObj.insertMessage(sid,did,dname,date,Status);
+	return output;
+	}
+	
+	
+	
 	
 	
 	// beginning of the PUT method

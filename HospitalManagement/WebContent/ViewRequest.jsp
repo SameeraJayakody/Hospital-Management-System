@@ -1,6 +1,7 @@
 
 <%@page import="model.schedule"%>
 <%@page import="database.dbconnect"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -12,20 +13,11 @@
 <body>
 
 
-<h1>Patients View</h1>
-
-
-<%
- schedule itemObj1 = new schedule();
-out.print(itemObj1.DisplayPatients());
-%> 
-
-
-<%-- <%
+<h1>Doctor Message</h1>
+   <%
  schedule itemObj2 = new schedule();
-out.print(itemObj2.Test());
-%>  --%>
-
+out.print(itemObj2.readRequest());
+%>
 
 </body>
 </html>
